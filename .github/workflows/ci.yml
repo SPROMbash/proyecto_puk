@@ -1,0 +1,23 @@
+name: CI Pipeline - Actividad 2
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Comprobar que existe el README
+        run: |
+          echo "Validando estructura del repositorio..."
+          test -f README.md && echo "README.md encontrado correctamente" || exit 1
+
+      - name: Pipeline completado
+        run: echo "Integración continua ejecutada con éxito"
